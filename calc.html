@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        .input-area{
+            padding: 40px;
+            text-align: right;
+            font-size: 3em;
+            min-height: 135px;
+            background: #272727;
+            margin-bottom: 5px;
+            color: #fff;;
+        }
+        .num-btns{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-gap: 5px;
+        }
+        .btn{
+            background: #ececec;
+            border: 1px solid #333;
+            padding: 40px;
+            text-align: center;
+            font-size: 2.5em;
+            cursor: pointer;
+        }
+        .op-btn{
+            color: #fff;
+            background-color: #ff8e01;
+        }
+        .calc-btn:hover{
+            background: #0355d0;
+            color: #fff;
+            transition: .25s ease-in;
+            border: 0px;
+            box-shadow: 2px 2px 4px #777;
+        }
+        #cancle:hover{
+            background: #e80808;
+            color: #fff;
+            transition: .25s ease-in;
+            border: 0px;
+            box-shadow: 2px 2px 4px #777;
+        }
+        #equal:hover{
+            background: #2b9201;
+            color: #fff;
+            transition: .25s ease-in;
+            border: 0px;
+            box-shadow: 2px 2px 4px #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="calc-body">
+            <div class="input-area"></div>
+            <div class="num-btns">
+                <div class="btn calc-btn op-btn" data-key="+">+</div>
+                <div class="btn calc-btn op-btn" data-key="-">-</div>
+                <div class="btn calc-btn op-btn" data-key="/">/</div>
+                <div class="btn calc-btn op-btn" data-key="*">*</div>
+                <div class="btn calc-btn" data-key="1">1</div>
+                <div class="btn calc-btn" data-key="2">2</div>
+                <div class="btn calc-btn" data-key="3">3</div>
+                <div class="btn calc-btn" data-key="4">4</div>
+                <div class="btn calc-btn" data-key="5">5</div>
+                <div class="btn calc-btn" data-key="6">6</div>
+                <div class="btn calc-btn" data-key="7">7</div>
+                <div class="btn calc-btn" data-key="8">8</div>
+                <div class="btn calc-btn" data-key="9">9</div>
+                <div class="btn" id="cancle">C</div>
+                <div class="btn calc-btn" data-key="0">0</div>
+                <div class="btn" id="equal">=</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let app = {
+            inputArea : document.querySelector(".input-area"),
+            calcKey : document.querySelectorAll(".calc-btn"),
+            cancelKey : document.getElementById("cancle"),
+            equalKey : document.getElementById("equal")
+        }
+        app.calcKey.forEach(element => {
+            element.addEventListener("click", function(){
+                let value = this.dataset.key;
+                app.inputArea.textContent += value;
+            });
+        });
+        app.equalKey.addEventListener("click", function(){
+            if(app.inputArea.textContent === ""){
+                app.inputArea.textContent = "Enter a valid number";
+            }
+            else{
+                let value = app.inputArea.textContent;
+                value = eval(value);
+                app.inputArea.textContent = "";
+                app.inputArea.textContent += value;
+            }
+        });
+        app.cancelKey.addEventListener("click", function(){
+            app.inputArea.textContent = "";
+        });
+    </script>
+
+</body>
+</html>
