@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box; 
+            font-size: 1em;        
+        }
+        button{
+            cursor: pointer;
+        }
+        #head{
+            text-align: center;
+            font-size: 2em;
+            padding: 10px;
+        }
+        .wrapper{
+            width: 100%;
+            background: #cecece;
+            height: 100vh;
+        }
+        .input-area, .list-area{
+            width: 90%;
+            margin: 10px auto;
+            overflow: auto;
+        }
+        #list-input{
+            width: 84%;
+            padding: 10px 20px;
+        }
+        #add-btn{
+            width: 15%;
+            padding: 10px;
+        }
+        #item-name{
+            width: 90%;
+            float: left;
+            padding: 10px;
+        }
+        .delete{
+            width: 10%;
+            float: left;
+            padding: 10px;
+            color: #fff;
+            background: #de0101;
+        }
+        .list-item{
+            overflow: auto;
+            background: #272727;
+            color: #fff;
+            border-radius: 4px;
+            margin-bottom: 5px;
+        }
+        .none{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <h1 id="head">Shopping List</h1>
+        <div class="input-area">
+            <input type="text" id="list-input" placeholder="Enter item to be added">
+            <button id="add-btn">Add Item</button>
+        </div>
+        <div class="list-area">
+            <div class="list-item none">
+                <p id="item-name"></p>
+                <button class="delete">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let app = {
+            itemInput : document.getElementById("list-input"),
+            addBtn : document.getElementById("add-btn"),
+            listItem : document.getElementsByClassName("list-item")[0],
+            itemName : document.getElementById("item-name"),
+            deleteItem : document.getElementsByClassName("delete")[0],
+            listArea : document.getElementsByClassName("list-area")[0]
+        }
+        app.addBtn.onclick = (itmVal) =>{
+            if(app.itemInput.value===""){
+                alert("Enter item");
+            }
+            else{
+                itmVal = app.itemInput.value;
+                app.itemInput.value="";
+                appendItem();
+            }
+            function appendItem(){
+                let clone = app.listItem.cloneNode(true);
+                app.listArea.appendChild(clone);
+                app.listItem.classList.remove("none");
+                app.itemName.textContent = itmVal;
+            }
+        };
+        document.addEventListener('click',function(e){
+            if(e.target && e.target.className == 'delete'){
+                let target = e.target;
+                target.parentNode.remove();
+            }
+        })
+    </script>
+</body>
+</html>
