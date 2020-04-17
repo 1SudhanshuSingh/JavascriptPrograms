@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .btn-container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .btn-change-color{
+            background: transparent;
+            padding: 10px 20px;
+            border-color: #8e8e8e;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-container">
+        <div class="btn-container">
+            <button class="btn-change-color">Change Color</button>
+        </div>
+    </div>
+    <script>
+        let app = {
+            hexArray : ['a','b','c','d','e','f',0,1,2,3,4,5,6,7,8,9],
+            colorBtn : document.getElementsByClassName("btn-change-color")[0],
+            bgColor : document.getElementsByClassName("bg-container")[0]
+        }
+        app.colorBtn.addEventListener("click", function(){
+            let hexCode = "#";
+            while(hexCode.length < 7){
+                hexCode += app.hexArray[Math.round(Math.random() * app.hexArray.length)];
+            }
+            app.bgColor.style.backgroundColor = hexCode;
+        });       
+    </script>
+</body>
+</html>
