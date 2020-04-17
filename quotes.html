@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrapper{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .quotes-container{
+            padding: 20px;
+            background: #99ffe3;
+            width: 40%;
+            text-align: center;
+            align-content: center;
+            margin-right: 1.25em;
+            box-shadow: 3px 3px 6px #333;
+            font-size: 1.25em;
+        }
+        .get-quote{
+            padding: 10px 15px;
+            border-radius: 50px;
+            font-size: 1.25em;
+        }
+        .none{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="quotes-container none">
+            
+        </div>
+        <button class="get-quote">Get Quotes</button>
+    </div>
+    <script>
+        let quotes = [
+            "I'm selfish, impatient and a little insecure. I make mistakes, I am out of control and at times hard to handle. But if you can't handle me at my worst, then you sure as hell don't deserve me at my best.",
+            "It is not enough that we do our best; sometimes we must do what is required.",
+            "I have seen the best of you, and the worst of you, and I choose both.",
+            "Do your best and let God do the rest.",
+            "If I only had three words of advice, they would be, Tell the Truth. If got three more words, I'd add, all the time.",
+            "Sometimes doing your best is not good enough. Sometimes you must do what is required."
+        ]
+        let getQuote = document.querySelector(".get-quote");
+        let quotePlace = document.querySelector(".quotes-container");
+        getQuote.onclick = (function(quoteBox){
+            quotePlace.classList.remove("none");
+            quoteBox = quotes[Math.floor(Math.random()* quotes.length)];
+            quotePlace.textContent = quoteBox;
+        });
+    </script>
+</body>
+</html>
